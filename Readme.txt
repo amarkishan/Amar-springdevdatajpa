@@ -34,3 +34,24 @@ INSERT INTO userinfo (id, username, email, password, first_name, last_name)
 VALUES (1, 'rhythm', 'some@example.com', NULL, 'amar', 'test');
 		
 		
+		@PostMapping("/adduser")
+	public String addinfo(@RequestBody Userinfo user)
+	{
+		return userservice.adduser(user);
+	}
+	
+		public String adduser(Userinfo user) 
+	{
+		String decodedPassword = new String(Base64.getDecoder().decode(user.getPassword()));	
+		user.setPassword(decodedPassword);
+		Optional<Userinfo> existingUser = userrepo.findByUsername(user.getUsername());
+	    
+	    if (existingUser.isPresent()) {
+	        
+	        return "Username already exists: " + existingUser.get().getUsername();
+	    } else {
+	        Userinfo u = userrepo.save(user);
+	        return "User added successfully"+ u;
+	    }
+	}
+		
