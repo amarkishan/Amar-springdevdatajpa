@@ -27,7 +27,7 @@ public class Userinfo implements Serializable
 	private String firstname;
 	@Column
 	private String lastname;
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
@@ -45,10 +45,11 @@ public class Userinfo implements Serializable
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
 	@Override
 	public String toString() {
-		return "Userinfo [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password
-				+ ", firstname=" + firstname + ", lastname=" + lastname + "]";
+		return username;
 	}
 	public String getPassword() {
 		return password;

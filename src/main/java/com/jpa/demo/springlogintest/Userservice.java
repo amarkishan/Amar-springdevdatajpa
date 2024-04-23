@@ -28,7 +28,7 @@ public class Userservice
 	        return "Username already exists: " + existingUser.get().getUsername();
 	    } else {
 	        Userinfo u = userrepo.save(user);
-	        return "User added successfully"+ u;
+	        return "User added successfully:"+ u;
 	    }
 	}
 
